@@ -54,13 +54,14 @@ resource "null_resource" "web" {
     source      = "./ansible.sh"
     destination = "/tmp/ansible.sh"
   }
-  # provisioner "file" {
-  #   source      = "./onetoten.sh"
-  #   destination = "/tmp/onetoten.sh"
-  # }
+  provisioner "file" {
+    source      = "./onetoten.sh"
+    destination = "/tmp/onetoten.sh"
+  }
   provisioner "remote-exec" {
     inline = [
       "sh /tmp/ansible.sh",
+      "sh /tmp/onetoten.sh",
       "ansible --version"
     ]
   }
