@@ -10,7 +10,7 @@ variable "ec2" {
   })
   default = {
     instance_type = "t2.micro"
-    key_name      = "chaitanyaimportkey"
+    key_name      = "azureimportkey"
   }
 
 }

@@ -31,7 +31,7 @@ data "aws_ami_ids" "ubuntu_2204" {
 }
 resource "aws_instance" "web" {
   ami                         = data.aws_ami_ids.ubuntu_2204.ids[0]
-  instance_type               = var.ec2.instance_type
+  instance_type               = var.
   associate_public_ip_address = true
   key_name                    = var.ec2.key_name
   subnet_id                   = data.aws_subnets.default.ids[0]
