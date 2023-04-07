@@ -42,7 +42,7 @@ resource "aws_instance" "web" {
 }
 resource "null_resource" "web" {
   triggers = {
-    instance_ids = 0
+    instance_ids = 10
   }
   connection {
     type        = "ssh"
