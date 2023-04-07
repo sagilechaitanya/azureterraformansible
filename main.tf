@@ -42,12 +42,12 @@ resource "aws_instance" "web" {
 }
 resource "null_resource" "web" {
   triggers = {
-    instance_ids = 3
+    instance_ids = 
   }
   connection {
     type        = "ssh"
     user        = "ubuntu"
-    private_key = file("/home/user/91630/.ssh/id_rsa")
+    private_key = file("/home/ubuntu/.ssh/id_rsa")
     host        = aws_instance.web.public_ip
   }
   provisioner "file" {
