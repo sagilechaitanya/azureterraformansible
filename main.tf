@@ -31,7 +31,7 @@ data "aws_ami_ids" "ubuntu_2204" {
 }
 resource "aws_instance" "web" {
   ami                         = data.aws_ami_ids.ubuntu_2204.ids[0]
-  instance_type               = var.
+  instance_type               = var.ec2.instance_type
   associate_public_ip_address = true
   key_name                    = var.ec2.key_name
   subnet_id                   = data.aws_subnets.default.ids[0]
@@ -47,7 +47,7 @@ resource "null_resource" "web" {
   connection {
     type        = "ssh"
     user        = "ubuntu"
-    private_key = file("./home/ubuntu/.ssh/id_rsa")
+    private_key = file("/home/ubuntu/.ssh/id_rsa")
     host        = aws_instance.web.public_ip
   }
   provisioner "file" {
