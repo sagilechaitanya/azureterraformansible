@@ -42,27 +42,26 @@ resource "aws_instance" "web" {
 }
 resource "null_resource" "web" {
   triggers = {
-    instance_ids = 10
+    instance_ids = 0
   }
   connection {
     type        = "ssh"
     user        = "ubuntu"
-    private_key = file("/home/ubuntu/.ssh/id_rsa")
+    private_key = file("/home/ubuntu/.shh/id_rsa")
     host        = aws_instance.web.public_ip
   }
   provisioner "file" {
     source      = "./ansible.sh"
     destination = "/tmp/ansible.sh"
   }
-  provisioner "file" {
-    source      = "./onetoten.sh"
-    destination = "/tmp/onetoten.sh"
-  }
+
+  # provisioner "file" {
+  #   source      = "./onetoten.sh"
+  #   destination = "/tmp/onetoten.sh"
+  # }
   provisioner "remote-exec" {
     inline = [
-      "sh /tmp/ansible.sh",
-      "sh /tmp/onetoten.sh",
-      "ansible --version"
+      "sh /tmp/ansible.sh"
     ]
   }
   depends_on = [
