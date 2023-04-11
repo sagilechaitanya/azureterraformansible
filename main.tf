@@ -47,7 +47,7 @@ resource "null_resource" "web" {
   connection {
     type        = "ssh"
     user        = "ubuntu"
-    private_key = file("~/.ssh/id_rsa")
+    private_key = file("/home/ubuntu/.ssh/id_rsa")
     host        = aws_instance.web.public_ip
   }
   provisioner "file" {
