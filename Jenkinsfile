@@ -2,13 +2,13 @@ pipeline {
     agent any
     stages {
         stage('Build') {
-            steps{
+            steps {
                 git url: 'https://github.com/sagilechaitanya/azureterraformansible.git',
                    branch: 'master'
 
             }
         }
-            stage{
+            stage(build1) {
             steps {
                 sh 'terraform init' 
                 sh 'terraform validate'
